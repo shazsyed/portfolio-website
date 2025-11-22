@@ -1,0 +1,327 @@
+---
+import Layout from "../layouts/Layout.astro"
+import ThemeToggle from "../components/ThemeToggle.astro"
+import DitherCard from "../components/DitherCard.astro"
+import HallOfFame from "../components/HallOfFame.astro"
+import AreasOfExpertise from "../components/AreasOfExpertise.astro"
+import {
+    HERO_DATA,
+    SKILLS,
+    EXPERIENCE,
+    CERTIFICATIONS,
+    PROJECTS,
+} from "../constants"
+import {
+    Shield,
+    Terminal,
+    Cpu,
+    Globe,
+    Github,
+    Twitter,
+    Linkedin,
+    Lock,
+    Activity,
+    FileCode,
+    Trophy,
+    ArrowUpRight,
+} from "lucide-astro"
+---
+
+<Layout title="Shaz Syed | Security Engineer">
+    <ThemeToggle />
+
+    <main
+        class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 grid-rows-auto p-4 md:p-8 lg:p-12"
+    >
+        {/* HERO SECTION */}
+        <DitherCard
+            className="md:col-span-3 min-h-[300px] justify-center bg-cyber-dark"
+        >
+            <div
+                class="flex flex-col justify-center h-full space-y-6 px-4 md:px-12 py-8"
+            >
+                <div>
+                    <span
+                        class="inline-block px-2 py-1 border border-cyber-border text-[10px] uppercase tracking-widest text-cyber-secondary mb-4"
+                    >
+                        Identity Verified
+                    </span>
+                    <h1
+                        class="text-4xl md:text-7xl font-bold text-cyber-primary tracking-tighter mb-3"
+                    >
+                        {HERO_DATA.name}
+                    </h1>
+                    <h2
+                        class="text-lg md:text-xl text-cyber-primary font-light tracking-wide border-l-2 border-cyber-border pl-4 text-opacity-80"
+                    >
+                        {HERO_DATA.role}
+                    </h2>
+                </div>
+                <p
+                    class="text-sm md:text-base text-cyber-secondary max-w-2xl leading-relaxed font-light"
+                >
+                    {HERO_DATA.tagline}
+                </p>
+                <div class="pt-4 flex space-x-4">
+                    <button
+                        class="bg-cyber-primary text-cyber-black px-8 py-3 text-xs font-bold uppercase hover:bg-cyber-secondary hover:text-white transition-colors tracking-wider border border-transparent"
+                    >
+                        Download Resume
+                    </button>
+                    <button
+                        class="border border-cyber-border text-cyber-secondary px-8 py-3 text-xs font-bold uppercase hover:border-cyber-primary hover:text-cyber-primary transition-colors tracking-wider"
+                    >
+                        Contact
+                    </button>
+                </div>
+            </div>
+        </DitherCard>
+
+        {/* SIDEBAR */}
+        <div class="md:col-span-1 grid grid-rows-2 gap-4">
+            <DitherCard title="System Status">
+                <Activity size={14} slot="icon" />
+                <div class="flex flex-col justify-center h-full space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div
+                            class="w-2 h-2 bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+                        >
+                        </div>
+                        <span
+                            class="text-xs text-cyber-primary uppercase tracking-wider font-bold"
+                            >Operational</span
+                        >
+                    </div>
+                    <div class="h-px bg-cyber-border w-full"></div>
+                    <div
+                        class="flex items-center justify-between text-xs text-cyber-muted"
+                    >
+                        <span>Location</span>
+                        <span class="text-cyber-secondary">Unknown</span>
+                    </div>
+                    <div
+                        class="flex items-center justify-between text-xs text-cyber-muted"
+                    >
+                        <span>Encryption</span>
+                        <span class="text-cyber-secondary">AES-256</span>
+                    </div>
+                </div>
+            </DitherCard>
+
+            <DitherCard title="Uplink">
+                <Globe size={14} slot="icon" />
+                <div class="flex flex-col space-y-2 h-full justify-center">
+                    <a
+                        href="#"
+                        class="flex items-center space-x-3 p-2 hover:bg-cyber-dark transition-colors group/link"
+                    >
+                        <Github
+                            size={16}
+                            class="text-cyber-muted group-hover/link:text-cyber-primary"
+                        />
+                        <span
+                            class="text-xs text-cyber-secondary group-hover/link:text-cyber-primary"
+                            >GitHub</span
+                        >
+                    </a>
+                    <a
+                        href="#"
+                        class="flex items-center space-x-3 p-2 hover:bg-cyber-dark transition-colors group/link"
+                    >
+                        <Linkedin
+                            size={16}
+                            class="text-cyber-muted group-hover/link:text-cyber-primary"
+                        />
+                        <span
+                            class="text-xs text-cyber-secondary group-hover/link:text-cyber-primary"
+                            >LinkedIn</span
+                        >
+                    </a>
+                    <a
+                        href="#"
+                        class="flex items-center space-x-3 p-2 hover:bg-cyber-dark transition-colors group/link"
+                    >
+                        <Twitter
+                            size={16}
+                            class="text-cyber-muted group-hover/link:text-cyber-primary"
+                        />
+                        <span
+                            class="text-xs text-cyber-secondary group-hover/link:text-cyber-primary"
+                            >Twitter</span
+                        >
+                    </a>
+                </div>
+            </DitherCard>
+        </div>
+
+        {/* EXPERIENCE */}
+        <DitherCard title="Log: Experience" className="md:col-span-2">
+            <FileCode size={14} slot="icon" />
+            <div class="space-y-8">
+                {
+                    EXPERIENCE.map((job) => (
+                        <div class="relative pl-4 border-l border-cyber-border hover:border-cyber-muted transition-colors">
+                            <div class="absolute -left-[5px] top-0 w-[9px] h-[9px] bg-cyber-black border border-cyber-muted rotate-45 transition-colors duration-300" />
+                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                                <h4 class="text-base font-bold text-cyber-primary">
+                                    {job.role}
+                                </h4>
+                                <span class="text-xs text-cyber-muted font-mono">
+                                    {job.period}
+                                </span>
+                            </div>
+                            <div class="text-xs text-cyber-secondary mb-3 font-medium uppercase tracking-wide">
+                                {job.company}
+                            </div>
+                            <p class="text-sm text-cyber-secondary leading-relaxed max-w-lg">
+                                {job.description}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </DitherCard>
+
+        {/* SKILLS */}
+        <DitherCard title="Modules" className="md:col-span-1">
+            <Cpu size={14} slot="icon" />
+            <div class="flex flex-col space-y-6">
+                {
+                    SKILLS.map((cat) => (
+                        <div class="h-full">
+                            <h5 class="text-[10px] text-cyber-muted uppercase mb-2 tracking-widest font-bold">
+                                {cat.name}
+                            </h5>
+                            <div class="flex flex-wrap gap-1.5">
+                                {cat.skills.map((skill) => (
+                                    <span class="text-xs border border-cyber-border bg-cyber-dark px-2 py-1 text-cyber-secondary hover:border-cyber-secondary hover:text-cyber-primary transition-colors cursor-default">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </DitherCard>
+
+        {/* CREDENTIALS */}
+        <DitherCard title="Credentials" className="md:col-span-1">
+            <Shield size={14} slot="icon" />
+            <div class="flex flex-col space-y-3 h-full">
+                {
+                    CERTIFICATIONS.map((cert) => (
+                        <div class="bg-cyber-dark p-3 border border-cyber-border hover:border-cyber-muted transition-all group/cert relative overflow-hidden flex items-start space-x-3">
+                            {cert.logo && (
+                                <div class="flex-shrink-0 w-10 h-10 bg-white/5 rounded-sm p-1 flex items-center justify-center border border-cyber-border">
+                                    <img
+                                        src={cert.logo}
+                                        alt={cert.name}
+                                        class="w-full h-full object-contain opacity-80 group-hover/cert:opacity-100 transition-opacity"
+                                    />
+                                </div>
+                            )}
+                            <div class="flex-grow">
+                                <div class="absolute top-0 right-0 p-1">
+                                    <Lock
+                                        size={12}
+                                        class="text-cyber-muted group-hover/cert:text-cyber-secondary"
+                                    />
+                                </div>
+                                <div class="text-sm font-bold text-cyber-primary group-hover/cert:text-cyber-primary mb-1">
+                                    {cert.name}
+                                </div>
+                                <div class="text-[10px] text-cyber-secondary uppercase tracking-wider mb-2">
+                                    {cert.issuer}
+                                </div>
+                                <div class="w-full h-px bg-cyber-border mb-2" />
+                                <div class="flex justify-between items-center">
+                                    <span class="text-[10px] text-cyber-muted font-mono">
+                                        {cert.id}
+                                    </span>
+                                    <span class="text-[10px] text-cyber-muted font-mono">
+                                        {cert.date}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </DitherCard>
+
+        {/* EXPERTISE */}
+        <DitherCard title="System // Expertise" className="md:col-span-4">
+            <Shield size={14} slot="icon" />
+            <AreasOfExpertise />
+        </DitherCard>
+
+        {/* HALL OF FAME */}
+        <DitherCard
+            title="Hall of Fame // Targets"
+            className="md:col-span-4"
+            noPadding
+        >
+            <Trophy size={14} slot="icon" />
+            <HallOfFame />
+        </DitherCard>
+
+        {/* PROJECTS */}
+        <DitherCard title="Operations // Projects" className="md:col-span-4">
+            <Terminal size={14} slot="icon" />
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {
+                    PROJECTS.map((project) => (
+                        <div class="group/project relative p-6 border border-cyber-border bg-cyber-dark/40 hover:bg-cyber-dark hover:border-cyber-muted transition-all flex flex-col h-full">
+                            <div class="absolute top-0 left-0 w-2 h-2 border-l border-t border-transparent group-hover/project:border-cyber-secondary transition-colors" />
+                            <div class="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-transparent group-hover/project:border-cyber-secondary transition-colors" />
+                            <div class="flex justify-between items-start mb-4">
+                                <h3 class="text-base font-bold text-cyber-primary tracking-tight group-hover/project:text-cyber-primary transition-colors">
+                                    {project.title}
+                                </h3>
+                                <span
+                                    class={`text-[9px] px-1.5 py-0.5 border uppercase tracking-wider ${
+                                        project.status === "Live"
+                                            ? "border-emerald-900 text-emerald-600 dark:text-emerald-500 bg-emerald-950/30"
+                                            : project.status === "In Dev"
+                                              ? "border-amber-900 text-amber-600 dark:text-amber-500 bg-amber-950/30"
+                                              : "border-cyber-border text-cyber-muted"
+                                    }`}
+                                >
+                                    {project.status}
+                                </span>
+                            </div>
+                            <p class="text-sm text-cyber-secondary leading-relaxed mb-6 flex-grow">
+                                {project.description}
+                            </p>
+                            <div class="mt-auto">
+                                <div class="flex flex-wrap gap-2 mb-1">
+                                    {project.tech.map((t) => (
+                                        <span class="text-xs text-cyber-secondary bg-cyber-black border border-cyber-border px-2 py-1 font-mono">
+                                            {t}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div class="absolute bottom-4 right-4 text-cyber-muted group-hover/project:text-cyber-primary transition-colors">
+                                <ArrowUpRight size={16} />
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </DitherCard>
+    </main>
+
+    <footer
+        class="max-w-7xl mx-auto mt-8 py-4 border-t border-cyber-border flex justify-between items-end text-[10px] text-cyber-muted font-mono uppercase px-4 md:px-8 lg:px-12"
+    >
+        <div>
+            <p>© {new Date().getFullYear()} CIPHER_FOLIO. SYS_RDY.</p>
+        </div>
+        <div class="flex space-x-4">
+            <span>Latency: 12ms</span>
+            <span>Secure Connection</span>
+        </div>
+    </footer>
+</Layout>

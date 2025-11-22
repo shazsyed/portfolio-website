@@ -1,0 +1,79 @@
+---
+import { EXPERTISE_DATA } from "../constants"
+import { Shield, Target, Cloud, Code, Bug, Search } from "lucide-astro"
+---
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {
+        EXPERTISE_DATA.map((item) => (
+            <div class="group/expert relative h-48 border border-cyber-border bg-cyber-black overflow-hidden transition-all duration-500 hover:border-emerald-500/50 hover:shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+                {/* Background Grid/Scanline Effect (Low Opacity) */}
+                <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px] opacity-20" />
+
+                {/* Active Corner Accents */}
+                <div class="absolute top-0 left-0 w-0 h-0 border-l-2 border-t-2 border-emerald-500 transition-all duration-300 group-hover/expert:w-4 group-hover/expert:h-4" />
+                <div class="absolute bottom-0 right-0 w-0 h-0 border-r-2 border-b-2 border-emerald-500 transition-all duration-300 group-hover/expert:w-4 group-hover/expert:h-4" />
+
+                <div class="relative z-10 flex flex-col items-center justify-center h-full p-6 text-center transition-transform duration-500 group-hover/expert:-translate-y-2">
+                    {/* Icon Container */}
+                    <div class="mb-4 p-3 bg-cyber-dark rounded-full border border-cyber-border group-hover/expert:border-emerald-500/30 group-hover/expert:bg-emerald-950/10 transition-all duration-500 group-hover/expert:scale-90">
+                        {item.icon === "Shield" && (
+                            <Shield
+                                size={28}
+                                strokeWidth={1.5}
+                                class="text-cyber-secondary group-hover/expert:text-emerald-400 transition-colors duration-300"
+                            />
+                        )}
+                        {item.icon === "Target" && (
+                            <Target
+                                size={28}
+                                strokeWidth={1.5}
+                                class="text-cyber-secondary group-hover/expert:text-emerald-400 transition-colors duration-300"
+                            />
+                        )}
+                        {item.icon === "Cloud" && (
+                            <Cloud
+                                size={28}
+                                strokeWidth={1.5}
+                                class="text-cyber-secondary group-hover/expert:text-emerald-400 transition-colors duration-300"
+                            />
+                        )}
+                        {item.icon === "Code" && (
+                            <Code
+                                size={28}
+                                strokeWidth={1.5}
+                                class="text-cyber-secondary group-hover/expert:text-emerald-400 transition-colors duration-300"
+                            />
+                        )}
+                        {item.icon === "Bug" && (
+                            <Bug
+                                size={28}
+                                strokeWidth={1.5}
+                                class="text-cyber-secondary group-hover/expert:text-emerald-400 transition-colors duration-300"
+                            />
+                        )}
+                        {item.icon === "Search" && (
+                            <Search
+                                size={28}
+                                strokeWidth={1.5}
+                                class="text-cyber-secondary group-hover/expert:text-emerald-400 transition-colors duration-300"
+                            />
+                        )}
+                    </div>
+
+                    {/* Title */}
+                    <h3 class="text-lg font-bold text-cyber-primary tracking-wide mb-2 group-hover/expert:text-emerald-400 transition-colors">
+                        {item.title}
+                    </h3>
+
+                    {/* Description (Hidden by default, slides up) */}
+                    <div class="max-h-0 opacity-0 overflow-hidden group-hover/expert:max-h-24 group-hover/expert:opacity-100 transition-all duration-500 ease-out">
+                        <p class="text-xs text-cyber-secondary leading-relaxed px-2 pt-2 border-t border-cyber-border/30 mt-2">
+                            {item.description}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        ))
+    }
+</div>
