@@ -109,43 +109,27 @@ export const SKILLS: SkillCategory[] = [
 export const HALL_OF_FAME: HallOfFameEntry[] = [
   {
     company: "Tesla",
-    logoUrl: "/logos/tesla.png",
-    platform: "Bugcrowd",
-    year: "2023",
-    rank: "P1"
+    logoUrl: "/logos/tesla.png"
   },
   {
     company: "Google",
-    logoUrl: "/logos/google.png",
-    platform: "HackerOne",
-    year: "2022",
-    rank: "P2"
+    logoUrl: "/logos/google.png"
   },
   {
     company: "Uber",
-    logoUrl: "/logos/uber.png",
-    platform: "HackerOne",
-    year: "2022",
-    rank: "CRITICAL"
+    logoUrl: "/logos/uber.png"
   },
   {
     company: "Shopify",
-    logoUrl: "/logos/shopify.png",
-    platform: "HackerOne",
-    year: "2021",
-    rank: "HIGH"
+    logoUrl: "/logos/shopify.png"
   },
   {
     company: "PayPal",
-    logoUrl: "/logos/paypal.png",
-    platform: "HackerOne",
-    year: "2021"
+    logoUrl: "/logos/paypal.png"
   },
   {
     company: "Sony",
-    logoUrl: "/logos/sony.png",
-    platform: "Intigriti",
-    year: "2020"
+    logoUrl: "/logos/sony.png"
   }
 ];
 

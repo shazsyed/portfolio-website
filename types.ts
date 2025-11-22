@@ -28,9 +28,6 @@ export interface SkillCategory {
 export interface HallOfFameEntry {
   company: string;
   logoUrl: string;
-  platform: string;
-  year: string;
-  rank?: string;
 }
 
 export interface ExpertiseItem {
