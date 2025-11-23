@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets"
 import { HALL_OF_FAME } from "../constants"
 
 // Duplicate the list to create a seamless infinite scroll effect
@@ -30,16 +31,18 @@ const entries = [
                 <div class="group flex-shrink-0 w-48 flex flex-col items-center justify-center mx-4 px-4 py-2 cursor-crosshair transition-all duration-300">
                     {/* Logo Container */}
                     <div class="relative h-10 w-auto mb-3 opacity-50 group-hover:opacity-100 transition-opacity duration-300">
-                        <img
+                        <Image
                             src={entry.logoUrl}
                             alt={entry.company}
+                            width={120}
+                            height={40}
                             draggable={false}
                             class="h-full w-auto object-contain transition-opacity duration-300 select-none"
                         />
                     </div>
 
                     {/* Company Name */}
-                    <span class="text-xs font-bold tracking-widest text-cyber-secondary group-hover:text-cyber-primary uppercase transition-colors duration-300">
+                    <span class="text-xs font-bold tracking-widest text-cyber-secondary group-hover:text-emerald-400 uppercase transition-colors duration-300">
                         {entry.company}
                     </span>
                 </div>
