@@ -1,0 +1,54 @@
+---
+import { Sun, Moon } from "lucide-astro"
+---
+
+<button
+    id="theme-toggle"
+    class="fixed top-4 right-4 z-50 p-2 border border-cyber-border bg-cyber-card text-cyber-secondary hover:text-cyber-primary hover:border-cyber-primary transition-colors rounded-sm"
+    aria-label="Toggle Theme"
+>
+    <Sun id="sun-icon" size={16} class="hidden" />
+    <Moon id="moon-icon" size={16} />
+</button>
+
+<script is:inline>
+    // This script runs on page load
+    ;(function () {
+        const button = document.getElementById("theme-toggle")
+        const sunIcon = document.getElementById("sun-icon")
+        const moonIcon = document.getElementById("moon-icon")
+        const html = document.documentElement
+
+        // Function to update icon visibility
+        function updateIcon() {
+            const isDark = html.classList.contains("dark")
+            if (isDark) {
+                sunIcon?.classList.remove("hidden")
+                moonIcon?.classList.add("hidden")
+            } else {
+                sunIcon?.classList.add("hidden")
+                moonIcon?.classList.remove("hidden")
+            }
+        }
+
+        // Initialize icon based on current theme
+        updateIcon()
+
+        // Toggle theme on button click
+        button?.addEventListener("click", () => {
+            const isDark = html.classList.contains("dark")
+
+            if (isDark) {
+                html.classList.remove("dark")
+                html.classList.add("light")
+                localStorage.setItem("theme", "light")
+            } else {
+                html.classList.remove("light")
+                html.classList.add("dark")
+                localStorage.setItem("theme", "dark")
+            }
+
+            updateIcon()
+        })
+    })()
+</script>
