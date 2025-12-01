@@ -2,7 +2,6 @@ export interface Project {
   title: string;
   description: string;
   tech: string[];
-  status: 'Live' | 'In Dev' | 'Archived';
 }
 
 export interface Experience {
@@ -10,6 +9,7 @@ export interface Experience {
   company: string;
   period: string;
   description: string;
+  logo?: string;
 }
 
 export interface Certification {

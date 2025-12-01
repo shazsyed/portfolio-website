@@ -65,7 +65,7 @@ import {
                 </p>
                 <div class="pt-4 flex space-x-4">
                     <button
-                        class="bg-cyber-primary text-cyber-black px-8 py-3 text-xs font-bold uppercase hover:bg-cyber-secondary hover:text-cyber-black transition-colors tracking-wider border border-transparent"
+                        class="bg-emerald-500 text-cyber-black px-8 py-3 text-xs font-bold uppercase hover:bg-emerald-400 transition-all tracking-wider border border-emerald-500 hover:border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
                     >
                         Download Resume
                     </button>
@@ -98,7 +98,9 @@ import {
                         class="flex items-center justify-between text-xs text-cyber-muted"
                     >
                         <span>Location</span>
-                        <span class="text-cyber-secondary">Unknown</span>
+                        <span class="text-cyber-secondary"
+                            >{HERO_DATA.location}</span
+                        >
                     </div>
                     <div
                         class="flex items-center justify-between text-xs text-cyber-muted"
@@ -113,7 +115,9 @@ import {
                 <Globe size={14} slot="icon" />
                 <div class="flex flex-col space-y-2 h-full justify-center">
                     <a
-                        href="#"
+                        href="https://github.com/shazsyed"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         class="flex items-center space-x-3 p-2 hover:bg-cyber-dark transition-colors group/link"
                     >
                         <Github
@@ -126,7 +130,9 @@ import {
                         >
                     </a>
                     <a
-                        href="#"
+                        href="https://www.linkedin.com/in/shaz-syed"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         class="flex items-center space-x-3 p-2 hover:bg-cyber-dark transition-colors group/link"
                     >
                         <Linkedin
@@ -139,16 +145,21 @@ import {
                         >
                     </a>
                     <a
-                        href="#"
+                        href="https://bugcrowd.com/doppler"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         class="flex items-center space-x-3 p-2 hover:bg-cyber-dark transition-colors group/link"
                     >
-                        <Twitter
-                            size={16}
-                            class="text-cyber-muted group-hover/link:text-emerald-400"
+                        <Image
+                            src="/logos/bugcrowd.png"
+                            alt="Bugcrowd"
+                            width={16}
+                            height={16}
+                            class="w-4 h-4 object-contain opacity-60 group-hover/link:opacity-100 transition-opacity"
                         />
                         <span
                             class="text-xs text-cyber-secondary group-hover/link:text-emerald-400"
-                            >Twitter</span
+                            >Bugcrowd</span
                         >
                     </a>
                 </div>
@@ -163,20 +174,36 @@ import {
                     EXPERIENCE.map((job) => (
                         <div class="relative pl-4 border-l border-cyber-border hover:border-emerald-500/50 transition-colors group/experience">
                             <div class="absolute -left-[5px] top-0 w-[9px] h-[9px] bg-cyber-black border border-cyber-muted rotate-45 transition-colors duration-300 group-hover/experience:border-emerald-500 group-hover/experience:bg-emerald-500" />
-                            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
-                                <h4 class="text-base font-bold text-cyber-primary">
-                                    {job.role}
-                                </h4>
-                                <span class="text-xs text-cyber-muted font-mono">
-                                    {job.period}
-                                </span>
+                            <div class="flex items-start space-x-3 mb-3">
+                                {job.logo && (
+                                    <div class="flex-shrink-0 w-12 h-12 bg-white/5 rounded-sm p-1.5 flex items-center justify-center border border-cyber-border">
+                                        <Image
+                                            src={job.logo}
+                                            alt={job.company}
+                                            width={48}
+                                            height={48}
+                                            loading="eager"
+                                            class="w-full h-full object-contain opacity-80 group-hover/experience:opacity-100 transition-opacity"
+                                        />
+                                    </div>
+                                )}
+                                <div class="flex-grow">
+                                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
+                                        <h4 class="text-base font-bold text-cyber-primary">
+                                            {job.role}
+                                        </h4>
+                                        <span class="text-xs text-cyber-muted font-mono">
+                                            {job.period}
+                                        </span>
+                                    </div>
+                                    <div class="text-xs text-cyber-secondary mb-3 font-medium uppercase tracking-wide">
+                                        {job.company}
+                                    </div>
+                                    <p class="text-sm text-cyber-secondary leading-relaxed max-w-lg">
+                                        {job.description}
+                                    </p>
+                                </div>
                             </div>
-                            <div class="text-xs text-cyber-secondary mb-3 font-medium uppercase tracking-wide">
-                                {job.company}
-                            </div>
-                            <p class="text-sm text-cyber-secondary leading-relaxed max-w-lg">
-                                {job.description}
-                            </p>
                         </div>
                     ))
                 }
@@ -283,17 +310,6 @@ import {
                                 <h3 class="text-base font-bold text-cyber-primary tracking-tight transition-colors">
                                     {project.title}
                                 </h3>
-                                <span
-                                    class={`text-[9px] px-1.5 py-0.5 border uppercase tracking-wider ${
-                                        project.status === "Live"
-                                            ? "border-emerald-900 text-emerald-600 dark:text-emerald-500 bg-emerald-950/30"
-                                            : project.status === "In Dev"
-                                              ? "border-amber-900 text-amber-600 dark:text-amber-500 bg-amber-950/30"
-                                              : "border-cyber-border text-cyber-muted"
-                                    }`}
-                                >
-                                    {project.status}
-                                </span>
                             </div>
                             <p class="text-sm text-cyber-secondary leading-relaxed mb-6 flex-grow">
                                 {project.description}
