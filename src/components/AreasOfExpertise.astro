@@ -3,45 +3,29 @@ import { EXPERTISE_DATA } from "../constants"
 import { Shield, Target, Cloud, Code, Bug, Search } from "lucide-astro"
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<div class="flex flex-wrap justify-center gap-3">
     {
         EXPERTISE_DATA.map((item) => (
-            <div class="relative border border-cyber-border bg-cyber-black overflow-hidden p-4">
-                {/* Background Grid/Scanline Effect (Low Opacity) */}
-                <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px] opacity-20" />
-
-                <div class="relative z-10 flex flex-col items-start h-full">
-                    <div class="flex items-center space-x-3 mb-2">
-                        {/* Icon Container */}
-                        <div class="p-2 bg-cyber-dark rounded-full border border-cyber-border">
-                            {item.icon === "Shield" && (
-                                <Shield size={18} class="text-emerald-400" />
-                            )}
-                            {item.icon === "Target" && (
-                                <Target size={18} class="text-emerald-400" />
-                            )}
-                            {item.icon === "Cloud" && (
-                                <Cloud size={18} class="text-emerald-400" />
-                            )}
-                            {item.icon === "Code" && (
-                                <Code size={18} class="text-emerald-400" />
-                            )}
-                            {item.icon === "Bug" && (
-                                <Bug size={18} class="text-emerald-400" />
-                            )}
-                            {item.icon === "Search" && (
-                                <Search size={18} class="text-emerald-400" />
-                            )}
-                        </div>
-
-                        {/* Title */}
-                        <h3 class="text-base font-bold text-cyber-primary tracking-wide">
-                            {item.title}
-                        </h3>
+            <div class="group/item relative">
+                {/* Main Chip/Pill */}
+                <div class="flex items-center gap-2 px-4 py-2 border border-cyber-border bg-cyber-card hover:border-accent-primary hover:bg-cyber-dark transition-all duration-300 cursor-default">
+                    <div class="text-cyber-muted group-hover/item:text-accent-hover transition-colors duration-300">
+                        {item.icon === "Shield" && <Shield size={16} />}
+                        {item.icon === "Target" && <Target size={16} />}
+                        {item.icon === "Cloud" && <Cloud size={16} />}
+                        {item.icon === "Code" && <Code size={16} />}
+                        {item.icon === "Bug" && <Bug size={16} />}
+                        {item.icon === "Search" && <Search size={16} />}
                     </div>
+                    <span class="text-sm font-medium text-cyber-secondary group-hover/item:text-cyber-primary transition-colors duration-300 uppercase tracking-wide">
+                        {item.title}
+                    </span>
+                </div>
 
-                    {/* Description (Always visible) */}
-                    <p class="text-sm text-cyber-secondary leading-relaxed pl-1">
+                {/* Hover Tooltip - Appears Below */}
+                <div class="absolute top-[calc(100%+10px)] left-1/2 -translate-x-1/2 w-64 p-3 bg-cyber-black border border-accent-primary shadow-[0_0_15px_var(--accent-glow-hover)] opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-300 z-[100] pointer-events-none">
+                    <div class="absolute -top-[5px] left-1/2 -translate-x-1/2 w-2 h-2 bg-cyber-black border-l border-t border-accent-primary rotate-45" />
+                    <p class="text-xs text-cyber-primary leading-relaxed text-center">
                         {item.description}
                     </p>
                 </div>

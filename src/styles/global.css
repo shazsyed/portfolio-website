@@ -9,23 +9,35 @@
   --cyber-muted: #52525b;      /* Muted Text */
   --cyber-accent: #3f3f46;     /* Accents */
   
+  /* Dark Mode - Green Accent Colors */
+  --accent-primary: #10b981;    /* emerald-500 */
+  --accent-hover: #34d399;      /* emerald-400 */
+  --accent-glow: rgba(16, 185, 129, 0.3);
+  --accent-glow-hover: rgba(16, 185, 129, 0.5);
+  
   /* Dark Dither (White/Grey dots on black) */
   --bg-dither: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='2' height='2' fill='%23333333' fill-opacity='0.4'/%3E%3C/svg%3E");
 }
 
 html.light {
-  /* Light Mode Variables - High Contrast */
-  --cyber-black: #f4f4f5;      /* Zinc-100 */
-  --cyber-dark: #ffffff;       /* White */
-  --cyber-card: #ffffff;       /* White */
-  --cyber-border: #a1a1aa;     /* Zinc-400 (Darkened from 300) */
-  --cyber-primary: #09090b;    /* Zinc-950 (Almost Black) */
-  --cyber-secondary: #27272a;  /* Zinc-800 (Dark Charcoal) */
-  --cyber-muted: #52525b;      /* Zinc-600 (Dark Grey) */
-  --cyber-accent: #d4d4d8;     /* Zinc-300 */
+  /* Light Mode Variables - Warm Off-White/Cream Theme */
+  --cyber-black: #faf8f3;      /* Warm Off-White Background */
+  --cyber-dark: #fffef9;       /* Warm Cream Panel */
+  --cyber-card: #fffcf5;       /* Warm Cream Card */
+  --cyber-border: #d4cfbc;     /* Warm Tan Border */
+  --cyber-primary: #1a1814;    /* Warm Dark Brown Text */
+  --cyber-secondary: #3d3a32;  /* Warm Dark Gray Text */
+  --cyber-muted: #6b6757;      /* Warm Medium Gray */
+  --cyber-accent: #e8e4d8;     /* Warm Light Accent */
 
-  /* Light Dither (Darker dots on white) */
-  --bg-dither: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='2' height='2' fill='%23a1a1aa' fill-opacity='0.4'/%3E%3C/svg%3E");
+  /* Light Mode - Warm Amber/Bronze Accent Colors */
+  --accent-primary: #c2410c;    /* orange-700 - rich warm bronze */
+  --accent-hover: #ea580c;      /* orange-600 - warm amber */
+  --accent-glow: rgba(194, 65, 12, 0.2);
+  --accent-glow-hover: rgba(234, 88, 12, 0.3);
+
+  /* Light Dither (Warm dots on cream) */
+  --bg-dither: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='2' height='2' fill='%23d4cfbc' fill-opacity='0.3'/%3E%3C/svg%3E");
 }
 
 body {

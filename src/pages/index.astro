@@ -5,6 +5,7 @@ import ThemeToggle from "../components/ThemeToggle.astro"
 import DitherCard from "../components/DitherCard.astro"
 import HallOfFame from "../components/HallOfFame.astro"
 import AreasOfExpertise from "../components/AreasOfExpertise.astro"
+import SystemInfo from "../components/SystemInfo.astro"
 import {
     HERO_DATA,
     SKILLS,
@@ -30,6 +31,7 @@ import {
 
 <Layout title="Shaz Syed | Security Engineer">
     <ThemeToggle />
+    <SystemInfo />
 
     <main
         class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 grid-rows-auto p-4 md:p-8 lg:p-12"
@@ -65,12 +67,12 @@ import {
                 </p>
                 <div class="pt-4 flex space-x-4">
                     <button
-                        class="bg-emerald-500 text-cyber-black px-8 py-3 text-xs font-bold uppercase hover:bg-emerald-400 transition-all tracking-wider border border-emerald-500 hover:border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
+                        class="bg-accent-primary text-white px-8 py-3 text-xs font-bold uppercase hover:bg-accent-hover transition-all tracking-wider border border-accent-primary hover:border-accent-hover shadow-[0_0_20px_var(--accent-glow)] hover:shadow-[0_0_30px_var(--accent-glow-hover)]"
                     >
                         Download Resume
                     </button>
                     <button
-                        class="border border-cyber-border text-cyber-secondary px-8 py-3 text-xs font-bold uppercase hover:border-emerald-500 hover:text-emerald-400 transition-colors tracking-wider"
+                        class="border border-cyber-border text-cyber-secondary px-8 py-3 text-xs font-bold uppercase hover:border-accent-primary hover:text-accent-hover transition-colors tracking-wider"
                     >
                         Contact
                     </button>
@@ -85,7 +87,7 @@ import {
                 <div class="flex flex-col justify-center h-full space-y-4">
                     <div class="flex items-center space-x-3">
                         <div
-                            class="w-2 h-2 bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"
+                            class="w-2 h-2 bg-accent-primary animate-pulse shadow-[0_0_8px_var(--accent-glow-hover)]"
                         >
                         </div>
                         <span
@@ -122,10 +124,10 @@ import {
                     >
                         <Github
                             size={16}
-                            class="text-cyber-muted group-hover/link:text-emerald-400"
+                            class="text-cyber-muted group-hover/link:text-accent-hover"
                         />
                         <span
-                            class="text-xs text-cyber-secondary group-hover/link:text-emerald-400"
+                            class="text-xs text-cyber-secondary group-hover/link:text-accent-hover"
                             >GitHub</span
                         >
                     </a>
@@ -137,10 +139,10 @@ import {
                     >
                         <Linkedin
                             size={16}
-                            class="text-cyber-muted group-hover/link:text-emerald-400"
+                            class="text-cyber-muted group-hover/link:text-accent-hover"
                         />
                         <span
-                            class="text-xs text-cyber-secondary group-hover/link:text-emerald-400"
+                            class="text-xs text-cyber-secondary group-hover/link:text-accent-hover"
                             >LinkedIn</span
                         >
                     </a>
@@ -158,7 +160,7 @@ import {
                             class="w-4 h-4 object-contain opacity-60 group-hover/link:opacity-100 transition-opacity"
                         />
                         <span
-                            class="text-xs text-cyber-secondary group-hover/link:text-emerald-400"
+                            class="text-xs text-cyber-secondary group-hover/link:text-accent-hover"
                             >Bugcrowd</span
                         >
                     </a>
@@ -172,8 +174,8 @@ import {
             <div class="space-y-8">
                 {
                     EXPERIENCE.map((job) => (
-                        <div class="relative pl-4 border-l border-cyber-border hover:border-emerald-500/50 transition-colors group/experience">
-                            <div class="absolute -left-[5px] top-0 w-[9px] h-[9px] bg-cyber-black border border-cyber-muted rotate-45 transition-colors duration-300 group-hover/experience:border-emerald-500 group-hover/experience:bg-emerald-500" />
+                        <div class="relative pl-4 border-l border-cyber-border hover:border-accent-primary/50 transition-colors group/experience">
+                            <div class="absolute -left-[5px] top-0 w-[9px] h-[9px] bg-cyber-black border border-cyber-muted rotate-45 transition-colors duration-300 group-hover/experience:border-accent-primary group-hover/experience:bg-accent-primary" />
                             <div class="flex items-start space-x-3 mb-3">
                                 {job.logo && (
                                     <div class="flex-shrink-0 w-12 h-12 bg-white/5 rounded-sm p-1.5 flex items-center justify-center border border-cyber-border">
@@ -222,7 +224,7 @@ import {
                             </h5>
                             <div class="flex flex-wrap gap-1.5">
                                 {cat.skills.map((skill) => (
-                                    <span class="text-xs border border-cyber-border bg-cyber-dark px-2 py-1 text-cyber-secondary hover:border-emerald-500 hover:text-emerald-400 transition-colors cursor-default">
+                                    <span class="text-xs border border-cyber-border bg-cyber-dark px-2 py-1 text-cyber-secondary hover:border-accent-primary hover:text-accent-hover transition-colors cursor-default">
                                         {skill}
                                     </span>
                                 ))}
@@ -239,7 +241,7 @@ import {
             <div class="flex flex-col space-y-3 h-full">
                 {
                     CERTIFICATIONS.map((cert) => (
-                        <div class="bg-cyber-dark p-3 border border-cyber-border hover:border-emerald-500/50 transition-all group/cert relative overflow-hidden flex items-start space-x-3">
+                        <div class="bg-cyber-dark p-3 border border-cyber-border hover:border-accent-primary/50 transition-all group/cert relative overflow-hidden flex items-start space-x-3">
                             {cert.logo && (
                                 <div class="flex-shrink-0 w-10 h-10 bg-white/5 rounded-sm p-1 flex items-center justify-center border border-cyber-border">
                                     <Image
@@ -256,7 +258,7 @@ import {
                                 <div class="absolute top-0 right-0 p-1">
                                     <Lock
                                         size={12}
-                                        class="text-cyber-muted group-hover/cert:text-emerald-400"
+                                        class="text-cyber-muted group-hover/cert:text-accent-hover"
                                     />
                                 </div>
                                 <div class="text-sm font-bold text-cyber-primary mb-1">
@@ -282,15 +284,15 @@ import {
         </DitherCard>
 
         {/* EXPERTISE */}
-        <DitherCard title="System // Expertise" className="md:col-span-4">
+        <DitherCard title="System // Expertise" className="md:col-span-4 relative z-20" allowOverflow={true}>
             <Shield size={14} slot="icon" />
             <AreasOfExpertise />
         </DitherCard>
 
         {/* HALL OF FAME */}
         <DitherCard
-            title="Hall of Fame // Targets"
-            className="md:col-span-4"
+            title="Hall of Fame // COMPANIES I HAVE HACKED"
+            className="md:col-span-4 relative z-10"
             noPadding
         >
             <Trophy size={14} slot="icon" />
@@ -303,9 +305,9 @@ import {
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {
                     PROJECTS.map((project) => (
-                        <div class="group/project relative p-6 border border-cyber-border bg-cyber-dark/40 hover:bg-cyber-dark hover:border-emerald-500/50 transition-all flex flex-col h-full">
-                            <div class="absolute top-0 left-0 w-2 h-2 border-l border-t border-transparent group-hover/project:border-emerald-500 transition-colors" />
-                            <div class="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-transparent group-hover/project:border-emerald-500 transition-colors" />
+                        <div class="group/project relative p-6 border border-cyber-border bg-cyber-dark/40 hover:bg-cyber-dark hover:border-accent-primary/50 transition-all flex flex-col h-full">
+                            <div class="absolute top-0 left-0 w-2 h-2 border-l border-t border-transparent group-hover/project:border-accent-primary transition-colors" />
+                            <div class="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-transparent group-hover/project:border-accent-primary transition-colors" />
                             <div class="flex justify-between items-start mb-4">
                                 <h3 class="text-base font-bold text-cyber-primary tracking-tight transition-colors">
                                     {project.title}
@@ -323,7 +325,7 @@ import {
                                     ))}
                                 </div>
                             </div>
-                            <div class="absolute bottom-4 right-4 text-cyber-muted group-hover/project:text-emerald-400 transition-colors">
+                            <div class="absolute bottom-4 right-4 text-cyber-muted group-hover/project:text-accent-hover transition-colors">
                                 <ArrowUpRight size={16} />
                             </div>
                         </div>

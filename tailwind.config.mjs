@@ -17,6 +17,10 @@ export default {
 					secondary: 'var(--cyber-secondary)',
 					muted: 'var(--cyber-muted)',
 					accent: 'var(--cyber-accent)',
+				},
+				accent: {
+					primary: 'var(--accent-primary)',
+					hover: 'var(--accent-hover)',
 				}
 			},
 			backgroundImage: {

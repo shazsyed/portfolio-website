@@ -1,0 +1,77 @@
+---
+---
+
+<div
+    id="system-info"
+    class="fixed bottom-4 left-4 z-[200] bg-cyber-black/95 border border-cyber-border text-cyber-secondary font-mono text-[10px] leading-tight tracking-tight backdrop-blur-sm pointer-events-none select-none"
+>
+    <div class="p-2 space-y-0.5">
+        <div id="mouse-pos" class="opacity-70">
+            <span class="text-cyber-muted">x:</span> <span id="mouse-x">0</span>
+            <span class="ml-3 text-cyber-muted">y:</span> <span id="mouse-y">0</span>
+        </div>
+        <div class="h-px bg-cyber-border my-1"></div>
+        <div>
+            <span class="text-cyber-muted">CLIENT:</span>
+            <span id="client-name" class="ml-1 text-cyber-primary">Unknown</span>
+        </div>
+        <div>
+            <span class="text-cyber-muted">VIEWPORT:</span>
+            <span id="viewport" class="ml-1 text-cyber-primary">0x0</span>
+            <span class="ml-2 text-cyber-muted">SCREEN:</span>
+            <span id="screen" class="ml-1 text-cyber-primary">0x0</span>
+        </div>
+        <div>
+            <span class="text-cyber-muted">DEPTH:</span>
+            <span id="color-depth" class="ml-1 text-cyber-primary">0BIT</span>
+        </div>
+    </div>
+</div>
+
+<script is:inline>
+    ;(function () {
+        // Mouse tracking
+        document.addEventListener("mousemove", (e) => {
+            const mouseX = document.getElementById("mouse-x")
+            const mouseY = document.getElementById("mouse-y")
+            if (mouseX) mouseX.textContent = e.clientX
+            if (mouseY) mouseY.textContent = e.clientY
+        })
+
+        // Get browser name
+        function getBrowserName() {
+            const userAgent = navigator.userAgent
+            if (userAgent.includes("Firefox")) return "Firefox"
+            if (userAgent.includes("Chrome") && !userAgent.includes("Edg"))
+                return "Chrome"
+            if (userAgent.includes("Safari") && !userAgent.includes("Chrome"))
+                return "Safari"
+            if (userAgent.includes("Edg")) return "Edge"
+            if (userAgent.includes("Brave")) return "Brave"
+            return "Unknown"
+        }
+
+        // Update system info
+        function updateSystemInfo() {
+            const clientName = document.getElementById("client-name")
+            const viewport = document.getElementById("viewport")
+            const screen = document.getElementById("screen")
+            const colorDepth = document.getElementById("color-depth")
+
+            if (clientName) clientName.textContent = getBrowserName()
+            if (viewport)
+                viewport.textContent = `${window.innerWidth}x${window.innerHeight}`
+            if (screen)
+                screen.textContent = `${window.screen.width}x${window.screen.height}`
+            if (colorDepth)
+                colorDepth.textContent = `${window.screen.colorDepth}BIT`
+        }
+
+        // Initial update
+        updateSystemInfo()
+
+        // Update on resize
+        window.addEventListener("resize", updateSystemInfo)
+    })()
+</script>
+

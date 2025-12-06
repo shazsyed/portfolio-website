@@ -3,13 +3,14 @@ interface Props {
   title?: string
   className?: string
   noPadding?: boolean
+  allowOverflow?: boolean
 }
 
-const { title, className = "", noPadding = false } = Astro.props
+const { title, className = "", noPadding = false, allowOverflow = false } = Astro.props
 ---
 
 <div
-  class={`group relative bg-cyber-black border border-cyber-border hover:border-cyber-secondary transition-colors duration-300 flex flex-col overflow-hidden ${className}`}
+  class={`group relative bg-cyber-black border border-cyber-border hover:border-cyber-secondary transition-colors duration-300 flex flex-col ${allowOverflow ? 'overflow-visible' : 'overflow-hidden'} ${className}`}
 >
   {/* Dither Overlay on Hover */}
   <div
