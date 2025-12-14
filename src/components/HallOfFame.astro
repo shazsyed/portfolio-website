@@ -12,7 +12,8 @@ const entries = [
 ---
 
 <div
-    class="relative w-full h-32 flex items-center overflow-hidden bg-cyber-dark/50"
+    id="hall-of-fame-container"
+    class="relative w-full h-32 flex items-center overflow-hidden bg-cyber-dark/50 cursor-grab active:cursor-grabbing touch-pan-y select-none"
 >
     {/* Gradient Masks for smooth fade in/out on edges */}
     <div
@@ -25,10 +26,10 @@ const entries = [
     </div>
 
     {/* Scrolling Track */}
-    <div class="flex animate-marquee hover:[animation-play-state:paused]">
+    <div id="hall-of-fame-track" class="flex">
         {
             entries.map((entry) => (
-                <div class="group flex-shrink-0 w-48 flex flex-col items-center justify-center mx-4 px-4 py-2 cursor-crosshair transition-all duration-300">
+                <div class="group flex-shrink-0 w-48 flex flex-col items-center justify-center mx-4 px-4 py-2 cursor-crosshair transition-all duration-300 select-none">
                     {/* Logo Container with White Background */}
                     <div class="relative h-14 w-14 mb-3 opacity-50 group-hover:opacity-100 transition-opacity duration-300 bg-white p-2 flex items-center justify-center">
                         <Image
@@ -50,3 +51,136 @@ const entries = [
         }
     </div>
 </div>
+
+<script>
+    function initDragScroll() {
+        const container = document.getElementById("hall-of-fame-container");
+        const track = document.getElementById("hall-of-fame-track");
+
+        if (!container || !track) return;
+
+        // Settings: Tailwind config uses 40s for marquee.
+        const DURATION_MS = 40000;
+
+        let x = 0; // current translateX in px
+        let lastT = 0;
+        let raf: number | null = null;
+
+        let isHovering = false;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragStartTranslate = 0;
+
+        function trackWidth(): number {
+            // The keyframes move -50%, so our wrap distance is half the total track width.
+            return track.scrollWidth / 2;
+        }
+
+        function speedPxPerMs(): number {
+            const w = trackWidth();
+            return w > 0 ? w / DURATION_MS : 0;
+        }
+
+        function wrap() {
+            const w = trackWidth();
+            if (w <= 0) return;
+            // Keep x in (-w, 0] for stable looping.
+            x = ((x % w) + w) % w;
+            x = x - w;
+        }
+
+        function render() {
+            track.style.transform = `translateX(${x}px)`;
+        }
+
+        function tick(t: number) {
+            if (!lastT) lastT = t;
+            const dt = t - lastT;
+            lastT = t;
+
+            if (!isDragging && !isHovering) {
+                x -= speedPxPerMs() * dt;
+                wrap();
+                render();
+            }
+
+            raf = requestAnimationFrame(tick);
+        }
+
+        function start() {
+            if (raf) return;
+            // Start from 0 to match the old marquee's initial position.
+            x = 0;
+            wrap();
+            render();
+            raf = requestAnimationFrame(tick);
+        }
+
+        function stop() {
+            if (!raf) return;
+            cancelAnimationFrame(raf);
+            raf = null;
+            lastT = 0;
+        }
+
+        // Pause on hover (mouse) like the old CSS hover pause.
+        container.addEventListener("mouseenter", () => {
+            isHovering = true;
+        });
+        container.addEventListener("mouseleave", () => {
+            isHovering = false;
+        });
+
+        // Pointer events cover both mouse + touch.
+        container.addEventListener("pointerdown", (e: PointerEvent) => {
+            // Only left click for mouse; touch/pen are fine.
+            if (e.pointerType === "mouse" && e.button !== 0) return;
+
+            isDragging = true;
+            dragStartX = e.clientX;
+            dragStartTranslate = x;
+            container.setPointerCapture(e.pointerId);
+        });
+
+        container.addEventListener("pointermove", (e: PointerEvent) => {
+            if (!isDragging) return;
+            const dx = e.clientX - dragStartX;
+            x = dragStartTranslate + dx;
+            wrap();
+            render();
+        });
+
+        function endDrag(e: PointerEvent) {
+            if (!isDragging) return;
+            isDragging = false;
+            try {
+                container.releasePointerCapture(e.pointerId);
+            } catch {
+                // ignore
+            }
+        }
+
+        container.addEventListener("pointerup", endDrag);
+        container.addEventListener("pointercancel", endDrag);
+
+        // Prevent default image dragging behavior.
+        container.addEventListener("dragstart", (e: Event) => e.preventDefault());
+
+        // Keep loop stable on resize.
+        window.addEventListener("resize", () => {
+            wrap();
+            render();
+        });
+
+        // Avoid double-initializing if Astro re-runs this on view transitions.
+        if ((container as any).__hofInit) return;
+        (container as any).__hofInit = true;
+
+        start();
+    }
+
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', initDragScroll);
+    // Also initialize on astro page load (for view transitions)
+    document.addEventListener('astro:page-load', initDragScroll);
+</script>

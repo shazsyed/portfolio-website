@@ -66,7 +66,7 @@ export const PROJECTS: Project[] = [
 
 export const EXPERIENCE: Experience[] = [
   {
-    role: "Security Engineer",
+    role: "Security Engineer II",
     company: "Bazaar Technologies",
     period: "FEB 2025 - PRESENT",
     description: "Security Engineer driving cloud, container, and application security — automating CI/CD security pipelines, hardening Kubernetes, deploying AWS-wide SIEM monitoring, and cutting remediation times through custom tooling and developer enablement.",
